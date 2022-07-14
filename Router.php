@@ -20,15 +20,20 @@ class Router
     public function comprobarRutas()
     {
 
-        $currentUrl = $_SERVER['PATH_INFO'] ?? '/';
+            
+        $currentUrl = ($_SERVER['REQUEST_URI'] === '') ? '/' :  $_SERVER['REQUEST_URI'] ;
+
+
+
+        $splitURL = explode('?', $currentUrl);
+        // debuguear($splitURL);
         $method = $_SERVER['REQUEST_METHOD'];
 
         if ($method === 'GET') {
-            $fn = $this->getRoutes[$currentUrl] ?? null;
+            $fn = $this->getRoutes[$splitURL[0]] ?? null; //$splitURL[0] contiene la URL 
         } else {
-            $fn = $this->postRoutes[$currentUrl] ?? null;
+            $fn = $this->postRoutes[$splitURL[0]] ?? null;
         }
-
 
         if ( $fn ) {
             // Call user fn va a llamar una función cuando no sabemos cual sera
