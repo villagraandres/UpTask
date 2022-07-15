@@ -35,25 +35,40 @@ class LoginController{
    
 
     
-    public static function olvide(){
-        echo "desde olvide";
+    public static function olvide(Router $router){
+       
+        $router->render('auth/olvide',[
+            'titulo'=>'Recupear Password'
+        ]);
         
     }
 
-    public static function reestablecer(){
-        echo "desde password";
+    public static function reestablecer(Router $router){
+      
         if($_SERVER['REQUEST_METHOD']==='POST'){
 
         }
-    }
-
-    public static function mensaje(){
-        echo "desde login";
+        $router->render('auth/reestablecer',[
+            'titulo'=>'Reestablecer Password'
+        ]);
         
     }
 
-    public static function confirmar(){
-        echo "desde login";
+    public static function mensaje(Router $router){
+       
+        $router->render('auth/mensaje',[
+            'titulo'=>'Instrucciones'
+        ]);
+    }
+
+    public static function confirmar(Router $router){
+      
+
+
+        
+        $router->render('auth/confirmar',[
+            'titulo'=>'Confirmar'
+        ]);
         
     }
 

@@ -1,6 +1,5 @@
 <div class="contenedor login">
-    <h1 class="uptask">UpTask</h1>
-    <p class="tagline">Crea y Administra Proyectos</p>
+<?php include_once __DIR__.'/../templates/nombre.php' ?>
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Iniciar Sesión</p>
 
@@ -18,7 +17,7 @@
         </form>
         <div class="acciones">
             <a href="/crear">No tienes cuenta? Crea una!</a>
-            <a href="/crear">Olvidaste tu password?</a>
+            <a href="/olvide">Olvidaste tu password?</a>
         </div>
     </div>
 </div>
