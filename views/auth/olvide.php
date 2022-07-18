@@ -2,8 +2,8 @@
    <?php include_once __DIR__.'/../templates/nombre.php' ?>
     <div class="contenedor-sm">
         <p class="descripcion-pagina">Reecuperar Password</p>
-
-        <form  method="POST" class="formulario">
+        <?php include_once __DIR__.'/../templates/alertas.php' ?>   
+        <form  method="POST" class="formulario" >
 
        
         <div class="campo">

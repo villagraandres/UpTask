@@ -36,4 +36,22 @@ class mail{
         $this->mail->CharSet = "UTF-8";
         return $this->mail->send();
     }
+
+    public function reestablecer( string $nombre, string $correo, $token  ){
+        $this->mail->setFrom("frutiapptest@gmail.com", "Creacion de Cuenta");
+        $this->mail->addAddress($correo,$nombre);
+        $this->mail->Subject = "Confirmacion de Cuenta";
+
+
+        $contenido="<html>";
+        $contenido.="<p><strong>Hola ".$nombre. "</strong> has solicitado reestablcer tu contraseña</p>";
+        $contenido.="<p>Visita la siguiente pagina: <a href='http://".$_SERVER['HTTP_HOST']."/reestablecer?token=".$token."'>Reestablecer</a> </p> ";
+        $contenido.="</html>";
+     
+
+        $this->mail->Body = $contenido;
+        $this->mail->isHTML(true);
+        $this->mail->CharSet = "UTF-8";
+        return $this->mail->send();
+    }
 }
