@@ -35,7 +35,7 @@ class LoginController{
                         $_SESSION['nombre']=$usuario->nombre;
                         $_SESSION['email']=$usuario->email;
                         $_SESSION['login']=true;
-                     header('Location: /proyectos');
+                     header('Location: /dashboard');
 
 
 
@@ -115,7 +115,9 @@ class LoginController{
    }
 
     public static function logout(){
-        echo "desde logout";
+      session_start();
+      $_SESSION=[];
+      header('Location: /');
         
     }
 
