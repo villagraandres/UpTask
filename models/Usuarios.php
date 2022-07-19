@@ -76,7 +76,22 @@ class Usuarios extends ActiveRecord{
         
         return self::$alertas;
     }
+    public function validarLogin()
+    {
+        
+        if(!$this->email){
+            self::$alertas['error'][]='El email es obligatorio';
+        }
+        if($this->email && !filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+            self::$alertas['error'][]='El email no es valido';
+      }
 
+        if(!$this->password){
+            self::$alertas['error'][]='El password es obligatorio';
+        }
+        return self::$alertas;
+
+    }
 
 
     public function hash(){

@@ -9,14 +9,48 @@ class LoginController{
 
 
     public static function login(Router $router){
+
+        $alertas=[];
+
        
         if($_SERVER['REQUEST_METHOD']==='POST'){
+            $usuario= new Usuarios($_POST);
 
+            $alertas=$usuario->validarLogin();
+
+            if(empty($alertas)){
+                //Revisar si existe usuario
+
+                $usuario=Usuarios::where('email',$usuario->email);
+
+                if(!$usuario ||!$usuario->confirmado){
+                    Usuarios::setAlerta('error','El usuario no existe o no esta confirmado');
+                }else{
+                    //El usuario existe
+
+                    if(password_verify($_POST['password'],$usuario->password)){
+                       //Iniciar sesion
+                       session_start();
+                        $_SESSION['id']=$usuario->id;
+                        $_SESSION['nombre']=$usuario->nombre;
+                        $_SESSION['email']=$usuario->email;
+                        $_SESSION['login']=true;
+                     header('Location: /proyectos');
+
+
+
+                    }else{
+                        Usuarios::setAlerta('error','El password es incorrecto');
+                    }
+                }
+            }
         }
 
         //vista
+        $alertas=Usuarios::getAlertas();
         $router->render('auth/login',[
-            'titulo'=>'Iniciar Sesión'
+            'titulo'=>'Iniciar Sesión',
+            'alertas'=>$alertas
         ]);
     }
 
@@ -51,12 +85,14 @@ class LoginController{
                  $resultado=  $usuario->guardar();
                  
                     //Enviar correo
-
-                    $mail= new mail();
-                    $mail->confirmar($usuario->nombre,$usuario->email,$usuario->token);
+                   
 
 
                  if($resultado){
+                    
+                    $mail= new mail();
+                    $mail->confirmar($usuario->nombre,$usuario->email,$usuario->token);
+
                     header('Location: /mensaje');
                  }
 

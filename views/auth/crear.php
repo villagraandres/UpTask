@@ -9,12 +9,12 @@
 
         <div class="campo">
             <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" value="<?php echo $usuario->nombre?>">
+            <input type="text" id="nombre" name="nombre" value="<?php echo $usuario->nombre?>">
         </div>
 
         <div class="campo">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="ejemplo@ejemplo.com" value="<?php echo $usuario->email?>">
+            <input type="email" id="email" name="email"  value="<?php echo $usuario->email?>">
         </div>
 
         <div class="campo">

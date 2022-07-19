@@ -1,7 +1,7 @@
 <div class="contenedor olvide">
    <?php include_once __DIR__.'/../templates/nombre.php' ?>
     <div class="contenedor-sm">
-        <p class="descripcion-pagina">Reecuperar Password</p>
+        <p class="descripcion-pagina">Recuperar Password</p>
         <?php include_once __DIR__.'/../templates/alertas.php' ?>   
         <form  method="POST" class="formulario" >
 
