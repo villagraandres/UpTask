@@ -89,8 +89,8 @@ class Usuarios extends ActiveRecord{
         if(!$this->password){
             self::$alertas['error'][]='El password es obligatorio';
         }
-        return self::$alertas;
 
+        return self::$alertas;
     }
 
 
