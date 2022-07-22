@@ -2,11 +2,32 @@
 namespace Controllers;
 
 use Model\Proyectos;
+use Model\Tareas;
 
 class TareaController{
 
 
     public static function index(){
+
+        
+        $proyectoUrl=s($_GET['url']);
+
+        if(!$proyectoUrl){
+            header('Location: /dashboard');
+        }
+
+        $proyecto=Proyectos::where('url',$proyectoUrl);
+
+        session_start();
+
+       if(!$proyecto || $proyecto->propietarioId !== $_SESSION['id']){
+        header('Location: /404');
+       }
+
+       $tarea= Tareas::belongsTo('proyectoId',$proyecto->id);
+
+       echo json_encode(['tareas'=>$tarea]);
+
 
     }
 
@@ -24,15 +45,28 @@ class TareaController{
                 'mensaje'=>'Hubo un Error al agregar la tarea'
             ];
             echo json_encode($respuesta);
+            return;
            
-           }else{
+           }
+
+           //Todo bien
+
+           $tarea= new Tareas($_POST);
+           $tarea->proyectoId=$proyecto->id;
+          $resultado= $tarea->guardar();
+
+          if($resultado){
 
             $respuesta=[
-                'tipo'=>'exito',
-                'mensaje'=>'Tarea Agregado Correctamente'
-            ];
-            echo json_encode($respuesta);
-           }
+                'tipo'=> 'exito',
+                'id' => $resultado['id'],
+                'mensaje'=>'Tarea creada correctamente'
+              ];
+              
+           echo json_encode($respuesta);
+          }
+          
+
             
         }
     }
