@@ -18,6 +18,8 @@ class TareaController{
 
         $proyecto=Proyectos::where('url',$proyectoUrl);
 
+       
+
         session_start();
 
        if(!$proyecto || $proyecto->propietarioId !== $_SESSION['id']){
@@ -26,7 +28,7 @@ class TareaController{
 
        $tarea= Tareas::belongsTo('proyectoId',$proyecto->id);
 
-       echo json_encode(['tareas'=>$tarea]);
+       echo json_encode(['tareas'=>$tarea,'proyecto'=>$proyecto]);
 
 
     }
@@ -142,6 +144,50 @@ class TareaController{
 
 
             echo json_encode(['resultado'=>$resultado]);
+        }
+    }
+
+    public static function proyectoEliminar(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+           $proyecto=Proyectos::where('id',$_POST['id']);
+
+        $resultado= $proyecto->eliminar();
+
+        $resultado=[
+            'resultado'=>$resultado,
+            
+        ];
+
+
+
+
+            echo json_encode(['resultado'=>$resultado]);
+
+        }
+    }
+
+    public static function proyectoActualizar(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $proyecto=Proyectos::where('id',$_POST['id']);
+            $proyecto->proyecto= $_POST['nombre'];
+
+          $resultado=  $proyecto->actualizar();
+
+          if($resultado){
+
+            $respuesta=[
+                'resultado'=>$resultado,
+                'nombre'=>$proyecto->proyecto
+                
+            ];
+          }
+
+
+
+            echo json_encode(['resultado'=>$respuesta]);
+
         }
     }
 }

@@ -5,7 +5,15 @@
     <div class="contenedor-nueva-tarea">
         <button type="button" class="agregar-tarea" id="agregar-tarea" > &#43; Nueva Tarea</button>
 
+      
+
+      
+
     </div>
+
+    <div class="configuracion">
+        <img id="configBtn" class="imagen-configuracion" src="build/img/configurar.png" alt="">
+        </div>
 
     <div class="filtros" id="filtros">
 
