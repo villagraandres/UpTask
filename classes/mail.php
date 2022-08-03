@@ -13,13 +13,13 @@ class mail{
         $this->mail->SMTPAuth = true;
         $this->mail->Host = "smtp.mailtrap.io";
         $this->mail->Port = 587;
-        $this->mail->Username = "d98386aff043cd";
-        $this->mail->Password = "ad9a6874b4b037";
+        $this->mail->Username = "appendouptaskero@gmail.com";
+        $this->mail->Password = "eioonascaauodqok";
     }
 
 
     public function confirmar( string $nombre, string $correo, $token  ){
-        $this->mail->setFrom("frutiapptest@gmail.com", "Creacion de Cuenta");
+        $this->mail->setFrom("appendouptaskero@gmail.com", "Creacion de Cuenta");
         $this->mail->addAddress($correo,$nombre);
         $this->mail->Subject = "Confirmacion de Cuenta";
 
