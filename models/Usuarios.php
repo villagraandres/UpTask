@@ -33,6 +33,9 @@ class Usuarios extends ActiveRecord{
             self::$alertas['error'][]='El password es obligatorio';
         }
 
+        if($this->email && !filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+            self::$alertas['error'][]='El email no es valido';
+      }
       
         if( $this->password && strlen($this->password)<8){
             self::$alertas['error'][]='El password debe contener al menos 8 caracteres';
@@ -99,6 +102,9 @@ class Usuarios extends ActiveRecord{
         if(!$this->email){
             self::$alertas['error'][]='El email es obligatorio';
         }
+        if($this->email && !filter_var($this->email, FILTER_VALIDATE_EMAIL)){
+            self::$alertas['error'][]='El email no es valido';
+      }
         if(!$this->nombre){
             self::$alertas['error'][]='El nombre es obligatorio';
         }
