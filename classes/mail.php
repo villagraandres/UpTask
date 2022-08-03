@@ -11,10 +11,11 @@ class mail{
         $this->mail = new PHPMailer();
         $this->mail->isSMTP();
         $this->mail->SMTPAuth = true;
-        $this->mail->Host = "smtp.mailtrap.io";
+        $this->mail->Host = "smtp.gmail.com";
         $this->mail->Port = 587;
         $this->mail->Username = "appendouptaskero@gmail.com";
         $this->mail->Password = "eioonascaauodqok";
+        $this->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;
     }
 
 
