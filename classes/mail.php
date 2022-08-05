@@ -13,8 +13,8 @@ class mail{
         $this->mail->SMTPAuth = true;
         $this->mail->Host = "smtp.gmail.com";
         $this->mail->Port = 587;
-        $this->mail->Username = "appendouptaskero@gmail.com";
-        $this->mail->Password = "eioonascaauodqok";
+        $this->mail->Username = "uptask21441@gmail.com";
+        $this->mail->Password = "xirekudnxdieptbh";
         $this->SMTPSecure=PHPMailer::ENCRYPTION_SMTPS;
     }
 
